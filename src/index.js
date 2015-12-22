@@ -1,21 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import App from './containers/App.js';
+import todoApp from './reducers/index.js';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+let store = createStore(todoApp)
 
-  render() {
-    return(
-      <div>
-      React Redux Example
-      </div>
-    );
-  }
-}
+let rootElement = document.getElementById('app')
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('app')
-);
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  rootElement
+)
